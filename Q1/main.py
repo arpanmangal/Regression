@@ -12,11 +12,8 @@ if __name__ == '__main__':
     data = ld.loadData()
 
     # visualise data
-    # plot.scatterPlot(data[0][0], data[0][1], marker='rx')
-    # plot.scatterPlot(data[1][0], data[1][1], marker='rx')
-    # plot.scatterPlot(data[2][0], data[2][1], marker='rx')
+    plot.scatterPlot(data[0], data[1], "Acidity", "Density of Wine", marker='bx')
 
     # Train data
-    model.train(data[0][0], data[0][1],
-                data[1][0], data[1][1],
-                data[2][0], data[2][1])
+    Theta = model.train(data[0], data[1])
+    print("theta0: %.6f | theta1: %.6f" % (Theta[0], Theta[1]))

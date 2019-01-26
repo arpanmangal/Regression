@@ -25,9 +25,5 @@ def loadData ():
     training_Z = Z[0:training_size]
     validation_Z = Z[training_size:training_size+validation_size]
     test_Z = Z[training_size+validation_size:]
-    # print (training_Z, validation_Z, test_Z)
-    # print (Z)
 
-    return ([training_Z[:,0], training_Z[:,1]], 
-            [validation_Z[:,0], validation_Z[:,1]],
-            [test_Z[:,0], test_Z[:,1]])
+    return (Z[:,0], Z[:,1])
