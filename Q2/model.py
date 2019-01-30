@@ -25,7 +25,7 @@ def trainUnweighted (train_X, train_Y):
     return np.linalg.inv(X_matrix.T * X_matrix) * X_matrix.T * Y_matrix
 
 
-def displayWeighted (train_X, train_Y):
+def displayWeighted (train_X, train_Y, tau=0.8):
     """
     For each point trains the weighted model
     and plots a point
@@ -33,13 +33,13 @@ def displayWeighted (train_X, train_Y):
     train_X.sort()
     h_theta = []
     for x_i in train_X:
-        prediction = float(trainWeighted(train_X, train_Y, x_i))
+        prediction = float(trainWeighted(train_X, train_Y, x_i, tau))
         h_theta.append(prediction)
 
-    plot.linePlot(train_X, train_Y, h_theta, title="Weighted")
+    plot.linePlot(train_X, train_Y, h_theta, fileName=("plots/weighted-" + str(tau).replace('.','_')), title=("Weighted - Tau=" + str(tau)))
 
 
-def trainWeighted (train_X, train_Y, x):
+def trainWeighted (train_X, train_Y, x, tau):
     """
     Trains the weighted linear regression model, for a single query point
     Theta = (X.T * W * X)-1 * X.T * W * Y
@@ -52,7 +52,7 @@ def trainWeighted (train_X, train_Y, x):
     X_ones = np.ones((X_matrix.shape[0], 1))
     X_matrix = np.hstack((X_ones, X_matrix))
 
-    W_matrix = generateW (train_X, x, 0.8)
+    W_matrix = generateW (train_X, x, tau)
 
     # print (X_matrix.shape, W_matrix.shape, Y_matrix.shape)
     Theta = np.linalg.inv(X_matrix.T * W_matrix * X_matrix) * X_matrix.T * W_matrix * Y_matrix
