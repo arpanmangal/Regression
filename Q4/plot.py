@@ -23,8 +23,8 @@ def scatterPlot (X, Y, Xlabel="X", Ylabel="Y", marker="ro", fileName="plots/raw.
     crosses = np.array(crosses)
 
     fig = plt.figure(1)
-    cir = plt.plot(circles[:,0], circles[:,1], 'go', label="0")
-    cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="1")
+    cir = plt.plot(circles[:,0], circles[:,1], 'go', label="Alaska")
+    cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="Canada")
     plt.suptitle(title)
     plt.ylabel(Ylabel)
     plt.xlabel(Xlabel)
@@ -48,8 +48,8 @@ def logisticPlot (X, Y, slope, intercept, Xlabel="X", Ylabel="Y", marker="ro", f
     crosses = np.array(crosses)
 
     fig = plt.figure(1)
-    cir = plt.plot(circles[:,0], circles[:,1], 'go', label="0")
-    cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="1")
+    cir = plt.plot(circles[:,0], circles[:,1], 'go', label="Alaska")
+    cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="Canada")
     plt.plot(X[:,0], X[:,0]*slope + intercept, 'b')
     plt.suptitle(title)
     plt.ylabel(Ylabel)
