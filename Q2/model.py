@@ -36,7 +36,7 @@ def displayWeighted (train_X, train_Y, tau=0.8):
         prediction = float(trainWeighted(train_X, train_Y, x_i, tau))
         h_theta.append(prediction)
 
-    plot.linePlot(train_X, train_Y, h_theta, fileName=("plots/weighted-" + str(tau).replace('.','_')), title=("Weighted - Tau=" + str(tau)))
+    plot.linePlot(train_X, train_Y, h_theta, fileName=("Q2/plots/weighted-" + str(tau).replace('.','_')), title=("Weighted - Tau=" + str(tau)))
 
 
 def trainWeighted (train_X, train_Y, x, tau):

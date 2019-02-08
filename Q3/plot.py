@@ -8,7 +8,7 @@ from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 
-def scatterPlot (X, Y, Xlabel="X", Ylabel="Y", marker="ro", fileName="plots/raw.png", title="Scatter Plot"):
+def scatterPlot (X, Y, Xlabel="X", Ylabel="Y", marker="ro", fileName="Q3/plots/raw.png", title="Scatter Plot"):
     """
     Plots Y vs X as scatter plot
     """
@@ -33,7 +33,7 @@ def scatterPlot (X, Y, Xlabel="X", Ylabel="Y", marker="ro", fileName="plots/raw.
     plt.show()
 
 
-def logisticPlot (X, Y, slope, intercept, Xlabel="X", Ylabel="Y", marker="ro", fileName="plots/raw.png", title="Scatter Plot"):
+def logisticPlot (X, Y, slope, intercept, Xlabel="X", Ylabel="Y", marker="ro", fileName="Q3/plots/raw.png", title="Scatter Plot"):
     """
     Plots Y vs X, as well as the logistic line
     """
@@ -47,7 +47,7 @@ def logisticPlot (X, Y, slope, intercept, Xlabel="X", Ylabel="Y", marker="ro", f
     circles = np.array(circles)
     crosses = np.array(crosses)
 
-    fig = plt.figure(1)
+    fig = plt.figure(2)
     cir = plt.plot(circles[:,0], circles[:,1], 'go', label="0")
     cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="1")
     plt.plot(X[:,0], X[:,0]*slope + intercept, 'b')
