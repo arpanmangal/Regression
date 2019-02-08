@@ -18,23 +18,26 @@ def trainGDA (train_X, train_Y, mode=1):
 
     X_matrix = np.matrix(train_X)
     Y_matrix = np.matrix(train_Y).T
-    print (X_matrix.shape, Y_matrix.shape)
 
-    phi = computePhi (Y_matrix)
-    mu0 = computeMu (X_matrix, Y_matrix, classLabel=0)
-    mu1 = computeMu (X_matrix, Y_matrix, classLabel=1)
+    phi = float(computePhi (Y_matrix))
+    mu0 = np.matrix(computeMu (X_matrix, Y_matrix, classLabel=0)).T
+    mu1 = np.matrix(computeMu (X_matrix, Y_matrix, classLabel=1)).T
 
     if mode == 0:
         # Common Sigma
         Sigma = computeSig (X_matrix, Y_matrix, mu0, mu1)
-        # print (mu0, mu1, Sigma)
-        plot.linearGDAPlot(train_X, train_Y, np.matrix(mu0).T, np.matrix(mu1).T, np.matrix(Sigma), np.matrix(Sigma))
+        ## Print the result
+        print ("Mu0: %s | Mu1: %s | Sigma: %s" % (str(mu0), str(mu1), str(Sigma)) )
+        ## Plot the result
+        plot.GDAPlot(train_X, train_Y, mu0, mu1, Sigma, Sigma, fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
     else:
         # Different Sigma
         Sigma0 = computeDiffSig (X_matrix, Y_matrix, mu0, 0)
         Sigma1 = computeDiffSig (X_matrix, Y_matrix, mu1, 1)
-        # print (mu0, mu1, Sigma0, Sigma1)
-        plot.linearGDAPlot(train_X, train_Y, np.matrix(mu0).T, np.matrix(mu1).T, np.matrix(Sigma0), np.matrix(Sigma1))
+        ## Print the result
+        print ("Mu0: %s | Mu1: %s | Sigma0: %s | Sigma1: %s" % (str(mu0), str(mu1), str(Sigma0), str(Sigma1)) )
+        ## Plot the result
+        plot.GDAPlot(train_X, train_Y, mu0, mu1, Sigma0, Sigma1, fileName="Q4/plots/quadraticGDA.png", title="GDA Quadratic Boundary")
 
 
 def computePhi (train_Y):
@@ -73,18 +76,16 @@ def computeSig (train_X, train_Y, mu0, mu1):
 
     Sigma = np.matrix([[0, 0], [0, 0]])
     for (indicator, x) in zip(classIndicator, train_X):
+        x = x.T
         if indicator:
             # Class 0
-            # print (indicator, x-mu0, Sigma, (x - mu0).T * ((x - mu0)))
-            Sigma = Sigma + (x - mu0).T * ((x - mu0))
+            Sigma = Sigma + (x - mu0) * (x - mu0).T
         else:
             # Class 1
-            # print (indicator, x-mu1, Sigma,  (x - mu1).T * ((x - mu1)))
-            Sigma = Sigma + (x - mu1).T * (x - mu1)
+            Sigma = Sigma + (x - mu1) * (x - mu1).T
 
     Sigma = Sigma / m
-    print (Sigma)
-    return np.array(Sigma)
+    return np.matrix(Sigma)
 
 
 def computeDiffSig (train_X, train_Y, mu, classLabel):
@@ -97,10 +98,10 @@ def computeDiffSig (train_X, train_Y, mu, classLabel):
 
     Sigma = np.matrix([[0, 0], [0, 0]])
     for (indicator, x) in zip(classIndicator, train_X):
+        x = x.T
         if indicator:
             # Class 0
-            Sigma = Sigma + (x - mu).T * ((x - mu))
+            Sigma = Sigma + (x - mu) * (x - mu).T
 
     Sigma = Sigma / classCount
-    print (Sigma)
-    return np.array(Sigma)
+    return np.matrix(Sigma)

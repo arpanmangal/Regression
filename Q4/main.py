@@ -20,12 +20,3 @@ if __name__ == '__main__':
 
     # Train the GDA model
     model.trainGDA (X, Y, int(sys.argv[3]))
-    exit(0)
-    # Train the logistic regresssion
-    Theta = model.trainLogistic(X, Y)
-    print(Theta)
-
-    slope = -Theta[1,0]/Theta[2,0]
-    intercept = -Theta[0,0]/Theta[2,0]
-
-    plot.logisticPlot(X, Y, slope, intercept, "x1", "x2", title="Logistic Regression", fileName='Q4/plots/boundary.png')

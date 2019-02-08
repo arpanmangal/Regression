@@ -14,8 +14,8 @@ def loadData (x_file="../ass1_data/q4x.dat", y_file="../ass1_data/q4y.dat"):
     Y = []
     for label in labels:
         if (label == "Alaska"):
-            Y.append(0)
-        else:
             Y.append(1)
+        else:
+            Y.append(0)
 
     return (X, Y)
