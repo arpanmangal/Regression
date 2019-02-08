@@ -10,7 +10,7 @@ from numpy import matrix
 from numpy import linalg
 
 
-def trainGDA (train_X, train_Y):
+def trainGDA (train_X, train_Y, mode=1):
     """
     Trains the logistic regression model, using Newton's method
     Theta = Theta - H-1(Theta) * grad(Theta)
@@ -23,10 +23,18 @@ def trainGDA (train_X, train_Y):
     phi = computePhi (Y_matrix)
     mu0 = computeMu (X_matrix, Y_matrix, classLabel=0)
     mu1 = computeMu (X_matrix, Y_matrix, classLabel=1)
-    Sigma = computeSig (X_matrix, Y_matrix, mu0, mu1)
 
-    print (mu0, mu1, Sigma)
-    plot.linearGDAPlot(train_X, train_Y, np.matrix(mu0).T, np.matrix(mu1).T, np.matrix(Sigma), np.matrix(Sigma))
+    if mode == 0:
+        # Common Sigma
+        Sigma = computeSig (X_matrix, Y_matrix, mu0, mu1)
+        # print (mu0, mu1, Sigma)
+        plot.linearGDAPlot(train_X, train_Y, np.matrix(mu0).T, np.matrix(mu1).T, np.matrix(Sigma), np.matrix(Sigma))
+    else:
+        # Different Sigma
+        Sigma0 = computeDiffSig (X_matrix, Y_matrix, mu0, 0)
+        Sigma1 = computeDiffSig (X_matrix, Y_matrix, mu1, 1)
+        # print (mu0, mu1, Sigma0, Sigma1)
+        plot.linearGDAPlot(train_X, train_Y, np.matrix(mu0).T, np.matrix(mu1).T, np.matrix(Sigma0), np.matrix(Sigma1))
 
 
 def computePhi (train_Y):
@@ -75,5 +83,24 @@ def computeSig (train_X, train_Y, mu0, mu1):
             Sigma = Sigma + (x - mu1).T * (x - mu1)
 
     Sigma = Sigma / m
+    print (Sigma)
+    return np.array(Sigma)
+
+
+def computeDiffSig (train_X, train_Y, mu, classLabel):
+    """
+    Computes the means of the GDA
+    """
+    m = train_Y.shape[0]
+    classIndicator = np.array(train_Y == classLabel).flatten()
+    classCount = np.sum(classIndicator == True)
+
+    Sigma = np.matrix([[0, 0], [0, 0]])
+    for (indicator, x) in zip(classIndicator, train_X):
+        if indicator:
+            # Class 0
+            Sigma = Sigma + (x - mu).T * ((x - mu))
+
+    Sigma = Sigma / classCount
     print (Sigma)
     return np.array(Sigma)

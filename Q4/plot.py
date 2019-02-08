@@ -54,11 +54,10 @@ def linearGDAPlot (X, Y, Mu0, Mu1, Sigma1, Sigma2, Xlabel="X", Ylabel="Y", marke
     fig = plt.figure(2)
     cir = plt.plot(circles[:,0], circles[:,1], 'go', label="Alaska")
     cro = plt.plot(crosses[:,0], crosses[:,1], 'rx', label="Canada")
-    print (Mu0.shape, Mu1.shape, Sigma1.shape, Sigma1)
     plt.plot(Mu0[0], Mu0[1], 'bP')
     plt.plot(Mu1[0], Mu1[1], 'bP')
 
-    x1 = np.linspace(0,200,100)
+    x1 = np.linspace(50,180,100)
     x2 = np.linspace(300,500,100)
 
     print (x1.shape[0])

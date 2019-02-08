@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # plot.scatterPlot(X, Y, "Fresh", "Marine", title='Raw Data', fileName='Q4/plots/raw.png')
 
     # Train the GDA model
-    model.trainGDA (X, Y)
+    model.trainGDA (X, Y, int(sys.argv[3]))
     exit(0)
     # Train the logistic regresssion
     Theta = model.trainLogistic(X, Y)
