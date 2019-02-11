@@ -61,7 +61,7 @@ def costPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", 
 
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5)
-    plt.show()
+    plt.show(block=False)
 
 
 def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", title="Contour Plot"):
