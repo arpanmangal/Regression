@@ -27,17 +27,20 @@ def trainGDA (train_X, train_Y, mode=1):
         # Common Sigma
         Sigma = computeSig (X_matrix, Y_matrix, np.matrix(mu0).T, np.matrix(mu1).T)
         ## Print the result
-        print ("Mu0: %s | Mu1: %s | Sigma: %s" % (str(mu0), str(mu1), str(Sigma)) )
+        sigma = np.round(Sigma, decimals=3).tolist()
+        print ("PHI: %.2f | Mu0: %s | Mu1: %s | Sigma: %s" % (phi, mu0, mu1, sigma) )
         ## Plot the result
-        plot.GDAPlot(train_X, train_Y, mu0, mu1, Sigma, Sigma, fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
+        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma, Sigma, fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
     else:
         # Different Sigma
         Sigma0 = computeDiffSig (X_matrix, Y_matrix, np.matrix(mu0).T, 0)
         Sigma1 = computeDiffSig (X_matrix, Y_matrix, np.matrix(mu1).T, 1)
         ## Print the result
-        print ("Mu0: %s | Mu1: %s | Sigma0: %s | Sigma1: %s" % (str(mu0), str(mu1), str(Sigma0), str(Sigma1)) )
+        sigma0 = np.round(Sigma0, 3).tolist()
+        sigma1 = np.round(Sigma1, 3).tolist()
+        print ("PHI: %.3f | Mu0: %s | Mu1: %s | Sigma0: %s | Sigma1: %s" % (phi, mu0, mu1, sigma0, sigma1) )
         ## Plot the result
-        plot.GDAPlot(train_X, train_Y, mu0, mu1, Sigma0, Sigma1, fileName="Q4/plots/quadraticGDA.png", title="GDA Quadratic Boundary")
+        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma0, Sigma1, fileName="Q4/plots/quadraticGDA.png", title="GDA Quadratic Boundary")
 
 
 def computePhi (train_Y):
