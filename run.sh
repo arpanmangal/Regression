@@ -27,9 +27,14 @@ elif [ "$1" -eq "3" ]; then
     fi
     python3 Q3/main.py $2 $3
     exit 0
+elif [ "$1" -eq "4" ]; then
+    if [ "$#" -lt 4 ]; then
+        echo "Invalid Arguments"
+        exit 1
+    fi
+    python3 Q4/main.py $2 $3 $4
+    exit 0
 fi
 
-
-
-echo $1
-echo $2
+echo "Invalid Arguments"
+    exit 1

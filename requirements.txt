@@ -1,3 +1,2 @@
 numpy==1.16.0
 matplotlib==3.0.2
-plotly==3.5.0

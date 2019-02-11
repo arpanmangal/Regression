@@ -20,20 +20,20 @@ def trainGDA (train_X, train_Y, mode=1):
     Y_matrix = np.matrix(train_Y).T
 
     phi = float(computePhi (Y_matrix))
-    mu0 = np.matrix(computeMu (X_matrix, Y_matrix, classLabel=0)).T
-    mu1 = np.matrix(computeMu (X_matrix, Y_matrix, classLabel=1)).T
+    mu0 = computeMu (X_matrix, Y_matrix, classLabel=0)
+    mu1 = computeMu (X_matrix, Y_matrix, classLabel=1)
 
     if mode == 0:
         # Common Sigma
-        Sigma = computeSig (X_matrix, Y_matrix, mu0, mu1)
+        Sigma = computeSig (X_matrix, Y_matrix, np.matrix(mu0).T, np.matrix(mu1).T)
         ## Print the result
         print ("Mu0: %s | Mu1: %s | Sigma: %s" % (str(mu0), str(mu1), str(Sigma)) )
         ## Plot the result
         plot.GDAPlot(train_X, train_Y, mu0, mu1, Sigma, Sigma, fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
     else:
         # Different Sigma
-        Sigma0 = computeDiffSig (X_matrix, Y_matrix, mu0, 0)
-        Sigma1 = computeDiffSig (X_matrix, Y_matrix, mu1, 1)
+        Sigma0 = computeDiffSig (X_matrix, Y_matrix, np.matrix(mu0).T, 0)
+        Sigma1 = computeDiffSig (X_matrix, Y_matrix, np.matrix(mu1).T, 1)
         ## Print the result
         print ("Mu0: %s | Mu1: %s | Sigma0: %s | Sigma1: %s" % (str(mu0), str(mu1), str(Sigma0), str(Sigma1)) )
         ## Plot the result
