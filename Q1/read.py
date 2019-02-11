@@ -4,14 +4,14 @@ Module for reading data from 'linearX.csv' and 'linearY.csv'
 
 import numpy as np
 
-def loadData ():
+def loadData (x_file="ass1_data/linearX.csv", y_file="ass1_data/linearY.csv"):
     """
     Loads the X, Y matrices.
     Splits into training, validation and test sets
     """
 
-    X = np.genfromtxt('../ass1_data/linearX.csv')
-    Y = np.genfromtxt('../ass1_data/linearY.csv')
+    X = np.genfromtxt(x_file)
+    Y = np.genfromtxt(y_file)
     Z = [X, Y]
     Z = np.c_[X.reshape(len(X), -1), Y.reshape(len(Y), -1)]
     np.random.shuffle(Z)
