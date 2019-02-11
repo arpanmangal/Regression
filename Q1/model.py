@@ -93,8 +93,8 @@ def bowlCurve (X_matrix, Y_matrix, costData, delay=0.2):
     print (costMatrix.shape)
     # exit()
     # print (costMatrix)
-    # plot.costPlot(theta0s, theta1s, costMatrix, Xlabel="Theta 0", Ylabel="Theta 1", Zlabel="Cost")
-    plot.contourPlot(theta0s, theta1s, costMatrix, costData, delay=delay, Xlabel="Theta 0", Ylabel="Theta 1", Zlabel="Cost")
+    plot.costPlot(theta0s, theta1s, costMatrix, costData, Xlabel="Theta 0", Ylabel="Theta 1", Zlabel="Cost")
+    # plot.contourPlot(theta0s, theta1s, costMatrix, costData, delay=delay, Xlabel="Theta 0", Ylabel="Theta 1", Zlabel="Cost")
 
 
 def SGD (X, Y, Theta, eta, batch_size=20):

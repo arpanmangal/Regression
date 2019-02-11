@@ -37,31 +37,34 @@ def regressionPlot (X, Y, slope, intercept, Xlabel="X", Ylabel="Y", marker="ro",
     plt.show()
 
 
-def costPlot (X, Y, Z, Xlabel="X", Ylabel="Y", Zlabel="Z"):
+def costPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", title="Cost Plot"):
     """
     Plots a 3D curve of XYZ
     """
-    # X = X / 10
-    print('hoa')
-    fig = plt.figure()
+    fig = plt.figure(3)
     ax = fig.gca(projection='3d')
+    plt.suptitle(title)
     ax.set_xlabel(Xlabel)
     ax.set_ylabel(Ylabel)
     ax.set_zlabel(Zlabel)
 
     X, Y = np.meshgrid(X, Y)
-    print (X.shape, Y.shape)
 
     # Plot the surface.
     surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
-                        linewidth=0, antialiased=False)
+                        linewidth=0, antialiased=False, alpha=0.5)
+
+    E = costData.shape[0]
+    for i in range(E):
+        ax.scatter(costData[i][1], costData[i][2], costData[i][0], marker='o', color='k')
+        plt.pause(delay)
 
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5)
     plt.show()
 
 
-def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", marker="rx", title="Contour Plot", fileName="Q1/contour.png"):
+def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", title="Contour Plot"):
     """
     Plots a contour curve of XYZ
     """
@@ -78,5 +81,4 @@ def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z
         plt.scatter(costData[i][1], costData[i][2], marker='o', color='b')
         plt.pause(delay)
 
-    fig.savefig(fileName)
-    plt.show()
+    plt.show(block=False)
