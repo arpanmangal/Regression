@@ -16,7 +16,7 @@ if __name__ == '__main__':
     (X, Y) = ld.loadData(sys.argv[1], sys.argv[2])
 
     # visualise data
-    plot.scatterPlot(X, Y, "Fresh", "Marine", title='Raw Data', fileName='Q4/plots/raw.png')
+    plot.scatterPlot(X, Y, "Fresh", "Marine", title='Raw Data', fileName='Q4/plots/rawGDA.png')
 
     # Train the GDA model
     model.trainGDA (X, Y, int(sys.argv[3]))

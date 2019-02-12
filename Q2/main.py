@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     # Unweighted linear regression
     Theta = model.trainUnweighted(data[0], data[1])
+    print("Unweighted -- Theta0: %.4f | Theta1: %.4f" % (Theta[0], Theta[1]))
     plot.regressionPlot(data[0], data[1], Theta[1,0], Theta[0,0], "X", "Y", "bx", fileName="Q2/plots/unweighted.png", title="Unweighted")
     
     # Weighted linear regression with tau = 0.8

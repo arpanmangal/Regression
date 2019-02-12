@@ -72,7 +72,7 @@ def GDAPlot (X, Y, Phi, Mu0, Mu1, Sigma0, Sigma1, Xlabel="X", Ylabel="Y", marker
             LHS = (X-Mu0).T * Sigma0_inv * (X-Mu0)
             LHS = (1-phi) * np.exp(-0.5 * float(LHS)) / math.sqrt(detA)
             RHS = (X-Mu1).T * Sigma1_inv * (X-Mu1)
-            RHS = (1-phi) * np.exp(-0.5 * float(RHS)) / math.sqrt(detB)
+            RHS = phi * np.exp(-0.5 * float(RHS)) / math.sqrt(detB)
             Z[i][j] = LHS - RHS
 
     plt.contour(x,y,Z,[0])

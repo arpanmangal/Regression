@@ -21,17 +21,8 @@ def trainLogistic (train_X, train_Y):
 
     X_ones = np.ones((X_matrix.shape[0], 1))
     X_matrix = np.hstack((X_ones, X_matrix))
-    # print (X_matrix.shape, Y_matrix.shape)
 
     Theta = np.matrix([0, 0, 0]).T # (0, 0, 0).T
-    # for itr in range(1):
-    #     # Do one iteration of Newton's Method
-    #     print (itr)
-    #     grad = gradient(X_matrix, Y_matrix, Theta)
-    #     if (np.linalg.norm(grad) == 0):
-    #         break
-    #     H_inverse = np.linalg.inv( hessian(X_matrix, Y_matrix, Theta) )
-    #     Theta = Theta - H_inverse * grad
 
     # Do one iteration of Newton's Method
     grad = gradient(X_matrix, Y_matrix, Theta)
