@@ -30,7 +30,7 @@ def trainGDA (train_X, train_Y, mode=1):
         sigma = np.round(Sigma, decimals=3).tolist()
         print ("PHI: %.2f | Mu0: %s | Mu1: %s | Sigma: %s" % (phi, mu0, mu1, sigma) )
         ## Plot the result
-        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma, Sigma, fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
+        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma, Sigma, "Fresh", "Marine", fileName="Q4/plots/linearGDA.png", title="GDA Linear Boundary")
     else:
         # Different Sigma
         Sigma0 = computeDiffSig (X_matrix, Y_matrix, np.matrix(mu0).T, 0)
@@ -40,7 +40,7 @@ def trainGDA (train_X, train_Y, mode=1):
         sigma1 = np.round(Sigma1, 3).tolist()
         print ("PHI: %.3f | Mu0: %s | Mu1: %s | Sigma0: %s | Sigma1: %s" % (phi, mu0, mu1, sigma0, sigma1) )
         ## Plot the result
-        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma0, Sigma1, fileName="Q4/plots/quadraticGDA.png", title="GDA Quadratic Boundary")
+        plot.GDAPlot(train_X, train_Y, phi, mu0, mu1, Sigma0, Sigma1, "Fresh", "Marine", fileName="Q4/plots/quadraticGDA.png", title="GDA Quadratic Boundary")
 
 
 def computePhi (train_Y):

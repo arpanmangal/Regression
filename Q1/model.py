@@ -49,7 +49,7 @@ def train (train_X, train_Y, learning_rate=1, delay=0.2, type="curve"):
             break
 
         if (epoch > 20 and cost < 1e-5 and abs(old_cost - cost) / old_cost < 0.0001):
-            # Change in cost is less than 0.1% => Stop
+            # Change in cost is less than 0.01% => Stop
             converged = True
             break
         costData.append( (float(cost), float(Theta[0, 0]), float(Theta[1,0]) / 10.0) )
@@ -61,7 +61,7 @@ def train (train_X, train_Y, learning_rate=1, delay=0.2, type="curve"):
     # Print result
     print("Theta0: %.6f | Theta1: %.6f | #Epochs: %d" % (Theta[0], Theta[1], epoch))
 
-    plot.regressionPlot(train_X, train_Y, Theta[1,0], Theta[0,0], Xlabel="Acidity", Ylabel="Density of Wine", marker="bx", fileName="Q1/plots/curve.png")
+    plot.regressionPlot(train_X, train_Y, Theta[1,0], Theta[0,0], Xlabel="Acidity", Ylabel="Density of Wine", marker="bx", fileName="Q1/plots/regression.png")
     animatedDesent(X_matrix, Y_matrix, np.array(costData), delay, converged=converged)
     return Theta
 
