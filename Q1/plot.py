@@ -57,21 +57,26 @@ def costPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", 
     E = costData.shape[0]
     for i in range(E):
         ax.scatter(costData[i][1], costData[i][2], costData[i][0], marker='o', color='k')
+        title = "Epoch " + str(i+1) + " of " + str(E) + " | Please don't close the figure until animation completes"
+        ax.set_title(title, fontsize=6)
         plt.pause(delay)
 
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5)
-    plt.show(block=False)
+    plt.show()
 
 
-def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z", title="Contour Plot"):
+def contourPlot (X, Y, Z, costData, delay=0.2, converged=True, Xlabel="X", Ylabel="Y", Zlabel="Z", title="Contour Plot"):
     """
     Plots a contour curve of XYZ
     """
     fig = plt.figure(4)
     plt.suptitle(title)
     plt.title("Please don't close the figure until animation completes", fontsize=6)
-    plt.contour(X,Y,Z,[0.00001, 0.00005, 0.0001, 0.001, 0.005, 0.01, 0.05, 0.1])
+    if (converged):
+        plt.contour(X,Y,Z,[0.00001, 0.00005, 0.0001, 0.001, 0.005, 0.01, 0.05, 0.1])
+    else:
+        plt.contour(X,Y,Z)
     
     plt.ylabel(Ylabel)
     plt.xlabel(Xlabel)
@@ -79,6 +84,8 @@ def contourPlot (X, Y, Z, costData, delay=0.2, Xlabel="X", Ylabel="Y", Zlabel="Z
     E = costData.shape[0]
     for i in range(E):
         plt.scatter(costData[i][1], costData[i][2], marker='o', color='b')
+        title = "Epoch " + str(i+1) + " of " + str(E) + " | Please don't close the figure until animation completes"
+        plt.title(title, fontsize=6)
         plt.pause(delay)
 
-    plt.show(block=False)
+    plt.show()

@@ -11,7 +11,7 @@ $ pip install -r requirements.txt
 ## Running
 ### Question 1
 ```
-$ ./run.sh 1 ass1_data/linearX.csv ass1_data/linearY.csv 1 0.01
+$ ./run.sh 1 ass1_data/linearX.csv ass1_data/linearY.csv 1 0.1
 ```
 
 ### Question 2
